@@ -4,11 +4,11 @@ import org.example.clientes.model.entity.Cliente;
 import org.example.clientes.model.repostory.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -22,9 +22,14 @@ public class ClienteController {
         this.repository = repository;
     }
 
+    @GetMapping
+    public List<Cliente> obeterTodos(){
+      return repository.findAll();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente saveCliente (@RequestBody Cliente cliente){
+    public Cliente saveCliente (@RequestBody @Valid Cliente cliente){
         return repository.save(cliente);
     }
 
