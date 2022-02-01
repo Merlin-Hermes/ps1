@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CheckinDTO {
     private String descricao;
-    private String quarto;
+    private String Quarto;
     private String data;
     private String valor;
     private Integer idCliente;

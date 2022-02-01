@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/quartos")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class CheckinController {
 
     private final ClienteRepository clienteRepository;
