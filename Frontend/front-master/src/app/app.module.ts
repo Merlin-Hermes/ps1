@@ -13,6 +13,7 @@ import {CheckinModule} from "./checkin/checkin.module";
 import {CheckinService} from "./checkin.service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
