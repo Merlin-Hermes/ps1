@@ -4,4 +4,5 @@ export class Checkin{
   data: string;
   valor: string;
   idCliente: number;
+  status: string;
 }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-public class Checkin {
+public class Quarto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +18,8 @@ public class Checkin {
     @Column(nullable = false, length = 250)
     private String descricao;
 
-    @Column(nullable = false, length = 1)
-    private String quarto;
-
     @ManyToOne
     @JoinColumn
-
     private Cliente cliente;
 
     @Column(nullable = false, length = 10)
@@ -32,6 +28,8 @@ public class Checkin {
     @Column(name = "data_checkin", updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
+
+    private String status;
 
 
 

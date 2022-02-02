@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
-public class CheckinDTO {
+public class QuartoDTO {
 
     private String descricao;
     @NotEmpty(message = "{campo.quarto.obrigatorio}")
