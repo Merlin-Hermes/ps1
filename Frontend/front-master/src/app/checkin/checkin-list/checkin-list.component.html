@@ -13,10 +13,11 @@
   <br>
   <div class="row">
     <div class="col-md-12">
-      <table class="table table-condensed table-hover">
+      <table class="table table-condensed">
         <thead>
         <tr>
           <th>Quartos</th>
+          <th>Cliente</th>
           <th>Descrição</th>
           <th>Status</th>
           <th></th>
@@ -25,10 +26,11 @@
         <tbody>
         <tr *ngFor="let quarto of quartos">
           <td>
-            <button class="btn btn-primary" routerLink="/checkin-form/{{ quarto.id}}">
-              <i class="fa fa-bed"></i>
+            <button class="btn btn-primary" routerLink="/quarto-form/{{ quarto.id}}">
+            {{ quarto.id}}  <i class="fa fa-bed"></i>
             </button>
           </td>
+          <td>{{ quarto.idCliente}}</td>
           <td>{{ quarto.descricao}}</td>
           <td>{{ quarto.status}}</td>
         </tr>

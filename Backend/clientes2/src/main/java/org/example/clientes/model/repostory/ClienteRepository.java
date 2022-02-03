@@ -10,7 +10,4 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
-    @Query(" select s from Quarto s join s.cliente c where upper(c.nome) like upper(:nome) and MONTH(s.data) =:mes ")
-    List<Quarto> findByNomeClienteAndMes(
-            @Param("nome") String nome, @Param("mes") Integer mes);
 }

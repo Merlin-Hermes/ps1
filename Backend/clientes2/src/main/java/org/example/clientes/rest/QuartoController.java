@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/quartos")
 @RequiredArgsConstructor
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class QuartoController {
 
     private final ClienteRepository clienteRepository;
@@ -34,11 +34,13 @@ public class QuartoController {
     }
 
     @GetMapping
-    public List<Quarto> pesquisar(
-            @RequestParam(value = "nome", required = false, defaultValue = "") String nome,
-            @RequestParam(value = "mes", required = false) Integer mes
-    ){
-        return clienteRepository.findByNomeClienteAndMes("%" + nome + "%", mes);
+    public List<Quarto> obterQuartos(){
+        return quartoRepository.findAll();
+    }
+
+    @GetMapping("id")
+    public Quarto acharQuartoPorId(@PathVariable Integer id){
+        return quartoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
 
     @PutMapping

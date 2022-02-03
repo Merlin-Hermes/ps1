@@ -10,10 +10,9 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class QuartoDTO {
 
+    @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;
-    @NotEmpty(message = "{campo.quarto.obrigatorio}")
     private String Quarto;
-    @NotEmpty(message = "{campo.data.obrigatorio}")
     private String data;
     private String valor;
     private Integer idCliente;

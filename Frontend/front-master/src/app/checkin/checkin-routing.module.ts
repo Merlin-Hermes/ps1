@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import {CheckinFormComponent} from "./checkin-form/checkin-form.component";
 import {CheckinListComponent} from "./checkin-list/checkin-list.component";
 
-
 const routes: Routes = [
-  {path: 'checkin-form', component: CheckinFormComponent},
+  {path: 'quarto-form', component: CheckinFormComponent},
+  {path: 'quarto-form/:id', component: CheckinFormComponent},
   {path: 'quarto-list', component: CheckinListComponent}
 ];
 

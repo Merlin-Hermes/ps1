@@ -1,6 +1,6 @@
 export class Checkin{
   descricao: string;
-  quarto: string;
+  id: number;
   data: string;
   valor: string;
   idCliente: number;

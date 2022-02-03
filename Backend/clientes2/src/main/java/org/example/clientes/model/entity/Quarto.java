@@ -29,6 +29,7 @@ public class Quarto {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
+    @Column(nullable = false)
     private String status;
 
 

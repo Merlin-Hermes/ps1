@@ -3,7 +3,7 @@
   <li class="breadcrumb-item active">novo</li>
 </ol>
 <div class="container">
-  <form #form="ngForm" (submit)="onSubmit()">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
 
     <div class="row">
       <div class="col-md-12">
@@ -57,8 +57,8 @@
       <div class="col-md-2">
         <div class="form-group">
           <label>Quarto:</label>
-          <input class="form-control" type="text"
-                 [(ngModel)]="servico.quarto"
+          <input class="form-control" type="text" disabled="true"
+                 [(ngModel)]="servico.id"
                  name="Quarto" id="inputQuarto">
         </div>
       </div>
