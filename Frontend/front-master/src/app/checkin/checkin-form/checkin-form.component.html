@@ -1,0 +1,94 @@
+<h1 class="mt-4">Checkin</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">novo</li>
+</ol>
+<div class="container">
+  <form #form="ngForm" (submit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Checkin salvo com sucesso
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let error of errors" >
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>
+            Cliente:
+          </label>
+          <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="servico.idCliente">
+            <option value="">
+              selecione..
+            </option>
+            <option *ngFor="let clientes of clientes"
+                    [ngValue]="clientes.id">
+              {{ clientes.nome}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Descrição:</label>
+          <input class="form-control" type="text"
+                 [(ngModel)]="servico.descricao"
+                 name="descrição" id="inputDescrição">
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Valor:</label>
+          <input class="form-control" type="text"
+                 [(ngModel)]="servico.valor"
+                 name="Valor" id="inputValor">
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Quarto:</label>
+          <input class="form-control" type="text"
+                 [(ngModel)]="servico.quarto"
+                 name="Quarto" id="inputQuarto">
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Data:</label>
+          <input class="form-control" type="text"
+                 [(ngModel)]="servico.data"
+                 name="Data" id="inputData">
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Status:</label>
+          <input class="form-control" type="text"
+                 [(ngModel)]="servico.status"
+                 name="Status" id="inputStatus">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar</button>
+        <button type="button" class="btn btn-danger ml-1" (click)="voltar()" >
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+

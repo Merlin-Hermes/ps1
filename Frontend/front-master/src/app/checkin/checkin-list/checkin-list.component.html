@@ -1,0 +1,39 @@
+<h1 class="mt-4">Quartos</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Bem Vindo</li>
+</ol>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-warning" (click)="cadastroQuarto()">
+          <i class="fa fa-plus"></i> Novo Quarto
+        </button>
+      </div>
+    </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+          <th>Quartos</th>
+          <th>Descrição</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let quarto of quartos">
+          <td>
+            <button class="btn btn-primary" routerLink="/checkin-form/{{ quarto.id}}">
+              <i class="fa fa-bed"></i>
+            </button>
+          </td>
+          <td>{{ quarto.descricao}}</td>
+          <td>{{ quarto.status}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
