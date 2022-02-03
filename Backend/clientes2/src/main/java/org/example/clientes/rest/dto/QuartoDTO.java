@@ -12,7 +12,7 @@ public class QuartoDTO {
 
     @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;
-    private String Quarto;
+    private Integer id;
     private String data;
     private String valor;
     private Integer idCliente;
