@@ -14,7 +14,7 @@ export class CheckinService {
 
   constructor(private http: HttpClient) { }
 
-  salvar(checkin: Checkin) : Observable<Checkin> {
+  salvarQuarto(checkin: Checkin) : Observable<Checkin> {
     return this.http.post<Checkin>(this.apiUrl, checkin);
   }
 

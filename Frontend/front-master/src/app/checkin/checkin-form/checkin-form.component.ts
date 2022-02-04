@@ -47,19 +47,9 @@ export class CheckinFormComponent implements OnInit {
   }
 
   onSubmit(){
-    if (this.id) {
+      console.log(this.servico)
       this.checkservice
-        .checkinQuarto(this.servico)
-        .subscribe(Response =>{
-          this.success = true;
-          this.errors = null;
-        }, errorReponse => {
-          this.errors = ['error ao atualizar o cliente.']
-        })
-    }
-    else {
-      this.checkservice
-        .salvar(this.servico)
+        .salvarQuarto(this.servico)
         .subscribe(response => {
             this.success = true;
             this.errors = null;
@@ -69,7 +59,7 @@ export class CheckinFormComponent implements OnInit {
             this.errors = errorReponse.error.erros;
           }
         )
-    }
+
   }
 
   voltar(){

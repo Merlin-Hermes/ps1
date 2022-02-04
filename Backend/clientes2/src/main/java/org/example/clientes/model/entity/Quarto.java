@@ -15,23 +15,20 @@ public class Quarto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 250)
-    private String descricao;
-
-    @ManyToOne
-    @JoinColumn
-    private Cliente cliente;
-
-    @Column(nullable = false, length = 10)
-    private BigDecimal valor;
-
     @Column(name = "data_checkin", updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
+    @Column(nullable = false, length = 250)
+    private String descricao;
+
     @Column(nullable = false)
     private String status;
 
+    @Column( length = 10)
+    private BigDecimal valor;
 
-
+    @ManyToOne
+    @JoinColumn
+    private Cliente cliente;
 }
