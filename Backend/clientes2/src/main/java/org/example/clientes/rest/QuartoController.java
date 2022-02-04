@@ -26,27 +26,14 @@ public class QuartoController {
     private final ClienteRepository clienteRepository;
     private final QuartoRepository quartoRepository;
     private final BigDecimalConverter bigDecimalConverter;
+    Quarto quarto = new Quarto();
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Quarto saveQUarto(@RequestBody @Valid QuartoDTO dto){
-            Integer idCliente = dto.getIdCliente();
-            LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-            Cliente cliente =
-                    clienteRepository
-                            .findById(idCliente)
-                            .orElseThrow(() ->
-                                    new ResponseStatusException(
-                                            HttpStatus.BAD_REQUEST, "cliente inexistente"));
-
-
-            Quarto quarto = new Quarto();
             quarto.setDescricao(dto.getDescricao());
-            quarto.setData(data);
-            quarto.setCliente(cliente);
             quarto.setStatus(dto.getStatus());
-            quarto.setValor(bigDecimalConverter.converter(dto.getValor()));
 
             return quartoRepository.save(quarto);
 
@@ -63,4 +50,22 @@ public class QuartoController {
     public Quarto acharQuartoPorId(@PathVariable Integer id){
         return quartoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
+
+    @PutMapping("/{id}")
+    public Quarto checkin( @RequestBody @PathVariable Integer id, QuartoDTO dto){
+
+        Integer idCliente = dto.getIdCliente();
+        LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus
+                .BAD_REQUEST, "cliente inexistente"));
+
+        quarto.setCliente(dto.getIdCliente(cliente));
+        quarto.setData(data);
+        quarto.setValor(bigDecimalConverter.converter(dto.getValor()));
+        return quartoRepository.save(quarto);
+
+    }
+
 }
