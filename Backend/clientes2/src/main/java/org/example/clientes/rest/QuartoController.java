@@ -1,8 +1,8 @@
 package org.example.clientes.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.example.clientes.model.entity.Quarto;
 import org.example.clientes.model.entity.Cliente;
+import org.example.clientes.model.entity.Quarto;
 import org.example.clientes.model.repostory.QuartoRepository;
 import org.example.clientes.model.repostory.ClienteRepository;
 import org.example.clientes.rest.dto.QuartoDTO;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.awt.datatransfer.Clipboard;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -31,15 +32,10 @@ public class QuartoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Quarto saveQUarto(@RequestBody @Valid QuartoDTO dto){
-
             quarto.setDescricao(dto.getDescricao());
             quarto.setStatus(dto.getStatus());
-
             return quartoRepository.save(quarto);
-
         }
-
-
 
     @GetMapping
     public List<Quarto> obterQuartos(){
@@ -52,20 +48,15 @@ public class QuartoController {
     }
 
     @PutMapping("/{id}")
-    public Quarto checkin( @RequestBody @PathVariable Integer id, QuartoDTO dto){
-
-        Integer idCliente = dto.getIdCliente();
-        LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-        Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus
-                .BAD_REQUEST, "cliente inexistente"));
-
-        quarto.setCliente(dto.getIdCliente(cliente));
-        quarto.setData(data);
-        quarto.setValor(bigDecimalConverter.converter(dto.getValor()));
-        return quartoRepository.save(quarto);
-
+    public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid Quarto atualizarQuarto, QuartoDTO dto){
+        quartoRepository.findById(id)
+                .map(quarto -> {
+                    atualizarQuarto.setId(quarto.getId());
+                    atualizarQuarto.setValor(atualizarQuarto.getValor());
+                    return quartoRepository.save(atualizarQuarto);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Cliente não encontrado"));
+                        return atualizarQuarto;
     }
-
 }

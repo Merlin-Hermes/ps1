@@ -5,6 +5,8 @@ import {Checkin} from "../checkin";
 import {CheckinService} from "../../checkin.service"
 import {Params, Router, ActivatedRoute} from '@angular/router'
 import {Observable} from "rxjs";
+import {checkThresholds} from "@angular-devkit/build-angular/src/angular-cli-files/utilities/bundle-calculator";
+import {error} from "protractor";
 
 @Component({
   selector: 'app-checkin-form',
@@ -14,11 +16,11 @@ import {Observable} from "rxjs";
 export class CheckinFormComponent implements OnInit {
 
 
-  clientes: Cliente[] = []
+  clientes: Cliente[] = [];
   servico: Checkin;
-  id: number
+  id: number;
   success: boolean = false
-  errors: String[];
+  errors: String[] = [];
 
   constructor(
     private checkservice: CheckinService,
@@ -45,21 +47,16 @@ export class CheckinFormComponent implements OnInit {
       }
     })
   }
-
-  onSubmit(){
+onSubmit(){
     if (this.id) {
       console.log("hei")
-      this.checkservice
-        .checkinQuarto(this.servico)
-        .subscribe(response =>{
-          this.success = true;
-          this.errors = null;
-          this.servico = response;
-        }, errorReponse => {
-          this.errors = ['error ao Realizar checkin.']
-        })
+      this.checkservice.checkinQuarto(this.servico).subscribe( response => {
+        this.success = true;
+        this.errors = null;
+        this.servico = response;
+      })
     }
-    else {
+  else if (!this.id) {
       console.log(this.servico)
       this.checkservice
         .salvarQuarto(this.servico)
