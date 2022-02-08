@@ -1,20 +1,15 @@
 package org.example.clientes.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.example.clientes.model.entity.Cliente;
 import org.example.clientes.model.entity.Quarto;
 import org.example.clientes.model.repostory.QuartoRepository;
 import org.example.clientes.model.repostory.ClienteRepository;
-import org.example.clientes.rest.dto.QuartoDTO;
 import org.example.clientes.ultil.BigDecimalConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.awt.datatransfer.Clipboard;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -27,7 +22,6 @@ public class QuartoController {
     private final ClienteRepository clienteRepository;
     private final QuartoRepository quartoRepository;
     private final BigDecimalConverter bigDecimalConverter;
-    Quarto quarto = new Quarto();
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
