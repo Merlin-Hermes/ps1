@@ -19,7 +19,8 @@ export class CheckinFormComponent implements OnInit {
   clientes: Cliente[] = [];
   servico: Checkin;
   id: number;
-  success: boolean = false
+  success: boolean = false;
+  successCheck: boolean = false;
   errors: String[] = [];
 
   constructor(
@@ -49,7 +50,6 @@ export class CheckinFormComponent implements OnInit {
   }
 onSubmit(){
     if (this.id) {
-      console.log("hei")
       this.checkservice.checkinQuarto(this.servico).subscribe( response => {
         this.success = true;
         this.errors = null;
@@ -57,7 +57,6 @@ onSubmit(){
       })
     }
   else if (!this.id) {
-      console.log(this.servico)
       this.checkservice
         .salvarQuarto(this.servico)
         .subscribe(response => {

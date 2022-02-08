@@ -31,9 +31,7 @@ public class QuartoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Quarto saveQUarto(@RequestBody @Valid QuartoDTO dto){
-            quarto.setDescricao(dto.getDescricao());
-            quarto.setStatus(dto.getStatus());
+    public Quarto saveQUarto(@RequestBody @Valid Quarto quarto){
             return quartoRepository.save(quarto);
         }
 
@@ -44,19 +42,18 @@ public class QuartoController {
 
     @GetMapping("/{id}")
     public Quarto acharQuartoPorId(@PathVariable Integer id){
-        return quartoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+        return quartoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Quarto não encontrado"));
     }
 
     @PutMapping("/{id}")
-    public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid Quarto atualizarQuarto, QuartoDTO dto){
+    public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid Quarto atualizarQuarto){
         quartoRepository.findById(id)
                 .map(quarto -> {
                     atualizarQuarto.setId(quarto.getId());
-                    atualizarQuarto.setValor(atualizarQuarto.getValor());
                     return quartoRepository.save(atualizarQuarto);
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Cliente não encontrado"));
+                        "quarto não encontrado"));
                         return atualizarQuarto;
     }
 }

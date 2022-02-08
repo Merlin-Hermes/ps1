@@ -1,8 +1,10 @@
+import {Cliente} from "../clientes/cliente";
+
 export class Checkin{
   descricao: string;
   id: number;
   data: string;
   valor: string;
-  idCliente: number;
+  cliente: Cliente;
   status: string;
 }
