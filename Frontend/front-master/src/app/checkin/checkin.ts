@@ -5,6 +5,6 @@ export class Checkin{
   id: number;
   data: string;
   valor: string;
-  cliente: Cliente;
+  cliente: string;
   status: string;
 }

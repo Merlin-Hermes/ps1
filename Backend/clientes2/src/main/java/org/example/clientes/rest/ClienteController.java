@@ -24,7 +24,7 @@ public class ClienteController {
 
     @GetMapping
     public List<Cliente> obeterTodos(){
-      return repository.findAll();
+        return repository.findAll();
     }
 
     @PostMapping

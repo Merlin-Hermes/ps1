@@ -25,7 +25,7 @@ public class QuartoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Quarto saveQUarto(@RequestBody @Valid Quarto quarto){
+    public Quarto saveQuarto(@RequestBody @Valid Quarto quarto){
             return quartoRepository.save(quarto);
         }
 
