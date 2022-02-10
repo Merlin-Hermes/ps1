@@ -14,7 +14,7 @@ public class Quarto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "data_checkin", updatable = false)
+    @Column
     private LocalDate data;
 
     @Column(nullable = false, length = 250)
