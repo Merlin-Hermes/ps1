@@ -1,6 +1,5 @@
 package org.example.clientes.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,7 +15,6 @@ public class Quarto {
     private Integer id;
 
     @Column(name = "data_checkin", updatable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
     @Column(nullable = false, length = 250)
@@ -29,6 +27,6 @@ public class Quarto {
     private BigDecimal valor;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 }
