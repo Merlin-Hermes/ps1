@@ -13,6 +13,7 @@ import { ClientesService } from './clientes.service';
 import {CheckinModule} from "./checkin/checkin.module";
 import {CheckinService} from "./checkin.service";
 import { LoginComponent } from './login/login.component';
+import { LayoutComponent } from './layout/layout.component';
 
 
 
@@ -20,7 +21,8 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
