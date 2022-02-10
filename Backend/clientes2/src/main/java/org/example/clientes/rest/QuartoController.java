@@ -43,8 +43,9 @@ public class QuartoController {
     public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid Quarto atualizarQuarto){
         quartoRepository.findById(id)
                 .map(quarto -> {
-                    atualizarQuarto.setId(quarto.getId());
-                    return quartoRepository.save(atualizarQuarto);
+                    quarto.setId(atualizarQuarto.getId());
+                    quarto.setValor(atualizarQuarto.getValor());
+                    return quartoRepository.save(quarto);
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "quarto não encontrado"));

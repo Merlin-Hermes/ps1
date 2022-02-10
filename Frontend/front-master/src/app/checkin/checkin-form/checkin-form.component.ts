@@ -51,7 +51,7 @@ export class CheckinFormComponent implements OnInit {
 onSubmit(){
     if (this.id) {
       this.checkservice.checkinQuarto(this.servico).subscribe( response => {
-        this.success = true;
+        this.successCheck = true;
         this.errors = null;
         this.servico = response;
       })
