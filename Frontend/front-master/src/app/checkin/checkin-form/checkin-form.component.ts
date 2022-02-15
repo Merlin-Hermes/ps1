@@ -73,7 +73,7 @@ onSubmit(){
   }
 
   voltar(){
-    this.router.navigate(['/quarto-list'])
+    this.router.navigate(['/quarto'])
   }
 
 }

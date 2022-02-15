@@ -46,7 +46,6 @@ public class QuartoController {
 
     @PutMapping("/{id}")
     public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid QuartoDTO dto){
-        LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Quarto quart = new Quarto();
         Integer idCliente = dto.getIdCliente();
         Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
@@ -54,6 +53,7 @@ public class QuartoController {
 
         quartoRepository.findById(id)
                 .map(quarto -> {
+                    LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                     quart.setDescricao(dto.getDescricao());
                     quart.setStatus(dto.getStatus());
                     quart.setId(quarto.getId());

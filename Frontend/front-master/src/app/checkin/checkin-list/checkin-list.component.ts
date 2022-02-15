@@ -16,6 +16,7 @@ export class CheckinListComponent implements OnInit {
   quartoSelecionado: Checkin;
   messagemSucesso: string;
   messagemError: string;
+  clientes: Cliente[] = [];
 
   constructor(
     private service: CheckinService,
@@ -29,7 +30,7 @@ export class CheckinListComponent implements OnInit {
       .subscribe(response => this.quartos = response);
   }
   cadastroQuarto(){
-    this.router.navigate(['/quarto-form'])
+    this.router.navigate(['/quarto/form'])
   }
 
 }

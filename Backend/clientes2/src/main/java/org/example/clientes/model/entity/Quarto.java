@@ -1,5 +1,6 @@
 package org.example.clientes.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,7 +15,8 @@ public class Quarto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
     @Column(nullable = false, length = 250)
