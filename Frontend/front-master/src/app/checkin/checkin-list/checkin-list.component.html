@@ -30,9 +30,11 @@
             {{ quarto.id}}  <i class="fa fa-bed"></i>
             </button>
           </td>
-          <td>{{ quarto.idCliente}}</td>
           <td>{{ quarto.descricao}}</td>
           <td>{{ quarto.status}}</td>
+        </tr>
+        <tr *ngFor="let cliente of cliente">
+          <td>{{ cliente.nome}}</td>
         </tr>
         </tbody>
       </table>

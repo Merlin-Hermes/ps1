@@ -14,6 +14,7 @@ import {CheckinModule} from "./checkin/checkin.module";
 import {CheckinService} from "./checkin.service";
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
+import {AuthService} from "./auth.service";
 
 
 
@@ -35,7 +36,8 @@ import { LayoutComponent } from './layout/layout.component';
   ],
   providers: [
     ClientesService,
-    CheckinService
+    CheckinService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

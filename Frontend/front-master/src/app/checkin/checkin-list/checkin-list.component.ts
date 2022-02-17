@@ -13,6 +13,7 @@ import {Cliente} from "../../clientes/cliente";
 export class CheckinListComponent implements OnInit {
 
   quartos: Checkin[] = [];
+  cliente: Cliente[] = [];
   quartoSelecionado: Checkin;
   messagemSucesso: string;
   messagemError: string;
