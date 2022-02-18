@@ -1,8 +1,8 @@
 package org.example.clientes.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.example.clientes.model.entity.Quarto;
 import org.example.clientes.model.entity.Cliente;
+import org.example.clientes.model.entity.Quarto;
 import org.example.clientes.model.repostory.QuartoRepository;
 import org.example.clientes.model.repostory.ClienteRepository;
 import org.example.clientes.rest.dto.QuartoDTO;
@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -26,20 +27,12 @@ public class QuartoController {
     private final ClienteRepository clienteRepository;
     private final QuartoRepository quartoRepository;
     private final BigDecimalConverter bigDecimalConverter;
-    Quarto quarto = new Quarto();
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Quarto saveQUarto(@RequestBody @Valid QuartoDTO dto){
-
-            quarto.setDescricao(dto.getDescricao());
-            quarto.setStatus(dto.getStatus());
-
+    public Quarto saveQuarto(@RequestBody @Valid Quarto quarto){
             return quartoRepository.save(quarto);
-
         }
-
-
 
     @GetMapping
     public List<Quarto> obterQuartos(){
@@ -48,24 +41,29 @@ public class QuartoController {
 
     @GetMapping("/{id}")
     public Quarto acharQuartoPorId(@PathVariable Integer id){
-        return quartoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+        return quartoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Quarto não encontrado"));
     }
 
     @PutMapping("/{id}")
-    public Quarto checkin( @RequestBody @PathVariable Integer id, QuartoDTO dto){
-
+    public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid QuartoDTO dto){
+        Quarto quart = new Quarto();
         Integer idCliente = dto.getIdCliente();
-        LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
+        Cliente cliente = clienteOptional.orElse(new Cliente());
 
-        Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus
-                .BAD_REQUEST, "cliente inexistente"));
-
-        quarto.setCliente(dto.getIdCliente(cliente));
-        quarto.setData(data);
-        quarto.setValor(bigDecimalConverter.converter(dto.getValor()));
-        return quartoRepository.save(quarto);
-
+        quartoRepository.findById(id)
+                .map(quarto -> {
+                    LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    quart.setDescricao(dto.getDescricao());
+                    quart.setStatus(dto.getStatus());
+                    quart.setId(quarto.getId());
+                    quart.setData(data);
+                    quart.setCliente(cliente);
+                    quart.setValor(bigDecimalConverter.converter(dto.getValor()));
+                     return quartoRepository.save(quart);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "quarto não encontrado"));
+                        return quart;
     }
-
 }

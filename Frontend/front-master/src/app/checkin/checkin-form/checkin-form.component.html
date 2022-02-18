@@ -1,6 +1,6 @@
-<h1 class="mt-4">Checkin</h1>
+<h1 class="mt-4">Pousada</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">novo</li>
+  <li class="breadcrumb-item active">{{ servico.id ? 'Checkin' : 'Cadastro'}}</li>
 </ol>
 <div class="container">
   <form #form="ngForm" (ngSubmit)="onSubmit()">
@@ -10,6 +10,7 @@
         <div class="alert alert-success" role="alert" *ngIf="success == true">
           quarto salvo com sucesso
         </div>
+        <div class="alert alert-success" role="alert" *ngIf="successCheck == true">CheckIn realizado com sucesso</div>
         <div class="alert alert-danger" role="alert" *ngFor="let error of errors" >
           {{ error }}
         </div>

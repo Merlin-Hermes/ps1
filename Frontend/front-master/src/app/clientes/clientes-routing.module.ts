@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClientesformComponent } from './clientesform/clientesform.component'
 import {ClientesListaComponent} from "./clientes-lista/clientes-lista.component";
+import {LayoutComponent} from "../layout/layout.component";
 
 const routes: Routes = [
-  {path: 'clientes-form', component: ClientesformComponent},
-  {path: 'clientes-form/:id', component: ClientesformComponent},
-  {path: 'clientes-lista', component: ClientesListaComponent}
+
+  {path: 'clientes', component: LayoutComponent, children: [
+      {path: 'form', component: ClientesformComponent},
+      {path: 'form/:id', component: ClientesformComponent},
+      {path: 'lista', component: ClientesListaComponent},
+      {path: '', redirectTo: '/clientes/lista', pathMatch: 'full'}
+    ]}
 ];
 
 @NgModule({

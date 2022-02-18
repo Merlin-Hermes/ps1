@@ -3,12 +3,15 @@ package org.example.clientes.model.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.boot.context.properties.bind.Name;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.Optional;
 
 @Entity
 @Data

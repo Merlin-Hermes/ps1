@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CheckinService} from '../../checkin.service'
 import { Router } from '@angular/router'
 import {Checkin} from "../checkin";
+import {Cliente} from "../../clientes/cliente";
 
 
 @Component({
@@ -12,9 +13,11 @@ import {Checkin} from "../checkin";
 export class CheckinListComponent implements OnInit {
 
   quartos: Checkin[] = [];
+  cliente: Cliente[] = [];
   quartoSelecionado: Checkin;
   messagemSucesso: string;
   messagemError: string;
+  clientes: Cliente[] = [];
 
   constructor(
     private service: CheckinService,
@@ -28,7 +31,7 @@ export class CheckinListComponent implements OnInit {
       .subscribe(response => this.quartos = response);
   }
   cadastroQuarto(){
-    this.router.navigate(['/quarto-form'])
+    this.router.navigate(['/quarto/form'])
   }
 
 }

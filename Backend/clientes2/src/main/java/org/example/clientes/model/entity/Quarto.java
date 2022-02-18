@@ -15,7 +15,7 @@ public class Quarto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "data_checkin", updatable = false)
+
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
@@ -29,6 +29,6 @@ public class Quarto {
     private BigDecimal valor;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 }

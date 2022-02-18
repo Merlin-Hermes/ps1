@@ -43,12 +43,11 @@ export class ClientesformComponent implements OnInit {
   }
 
   voltarListagem(){
-    this.router.navigate(['/clientes-lista'])
+    this.router.navigate(['/clientes'])
   }
 
   onSubmit() {
     if (this.id) {
-
       this.service
         .atualizar(this.cliente)
         .subscribe(Response =>{

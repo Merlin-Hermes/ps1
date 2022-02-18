@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import {Checkin} from "./checkin/checkin";
 import {Observable} from "rxjs";
 import {environment} from '../environments/environment'
-import {HttpClient, HttpParams} from "@angular/common/http";
-
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
