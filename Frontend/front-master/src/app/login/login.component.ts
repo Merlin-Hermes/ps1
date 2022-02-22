@@ -24,7 +24,13 @@ export class LoginComponent  {
   }
 
   onSubmit(){
-    this.router.navigate(['/home'])
+    this.authService.tentarLogar(this.username, this.password).subscribe(
+      response => {
+        this.router.navigate(['/home'])
+      }, error => {
+        this.errors = ['Erro']
+      })
+
   }
 
   prepararCadastro(event){
@@ -43,6 +49,10 @@ export class LoginComponent  {
     usuario.password = this.password;
     this.authService.salvar(usuario).subscribe(response => {
       this.messagemSucess = "cadastrado com sucesso"
+      this.cadastrando = false;
+      this.username = '';
+      this.password = '';
+      this.errors = [];
     }, errorResponse => {
       this.messagemSucess = null;
       this.errors = errorResponse.error.erros;

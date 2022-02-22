@@ -21,7 +21,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/quartos")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:4200")
 public class QuartoController {
 
     private final ClienteRepository clienteRepository;
