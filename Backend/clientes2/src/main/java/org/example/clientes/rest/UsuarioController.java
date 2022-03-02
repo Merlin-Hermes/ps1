@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-
+/*
 @RestController
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
@@ -29,4 +29,4 @@ public class UsuarioController {
         }
     }
 
-}
+}*/

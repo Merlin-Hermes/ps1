@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-public class Usuario implements Serializable {
+public class Grupo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,15 +26,12 @@ public class Usuario implements Serializable {
 
     private String nome;
 
-    private String login;
+    private String descricao;
 
-    private String senha;
-
-    private boolean ativo;
-
-    @ManyToMany
-    private List<Grupo> grupos;
+    @ManyToMany(mappedBy = "grupos")
+    private List<Usuario> usuarios;
 
     @ManyToMany
     private List<Permissao> permissoes;
+
 }
