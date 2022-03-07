@@ -1,63 +1,46 @@
 package org.example.clientes.rest;
 
+import lombok.RequiredArgsConstructor;
 import org.example.clientes.model.entity.Cliente;
-import org.example.clientes.model.repostory.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.clientes.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
+@RequiredArgsConstructor
 public class ClienteController {
 
-    private final ClienteRepository repository;
-
-    @Autowired
-    public ClienteController(ClienteRepository repository) {
-        this.repository = repository;
-    }
+    private final ClienteService service;
 
     @GetMapping
-    public List<Cliente> obeterTodos(){
-        return repository.findAll();
+    public List<Cliente> obeter(){
+        return service.obeterTodos();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente saveCliente (@RequestBody @Valid Cliente cliente){
-        return repository.save(cliente);
+    public Cliente save (@RequestBody @Valid Cliente cliente){
+        return service.saveCliente(cliente);
     }
 
     @GetMapping("{id}")
-    public Cliente acharPorId(@PathVariable Integer id){
-        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+    public Cliente achar(@PathVariable Integer id){
+        return service.acharPorId(id);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
-        repository.findById(id)
-                .map(cliente -> {
-                    repository.delete(cliente);
-                    return Void.TYPE;
-                })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Cliente não encontrado"));
+        service.deletarId(id);
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody @Valid Cliente atualizarCliente){
-        repository.findById(id)
-                .map(cliente -> {
-                    atualizarCliente.setId(cliente.getId());
-                    return repository.save(atualizarCliente);
-                })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Cliente não encontrado"));
+        service.atualizarId(id, atualizarCliente);
     }
 }
