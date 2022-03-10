@@ -26,11 +26,11 @@ public class ClienteService {
         return repository.save(cliente);
     }
 
-    public Cliente acharPorId(@PathVariable Integer id){
+    public Cliente acharPorId(@PathVariable Long id){
         return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
 
-    public void deletarId(@PathVariable Integer id){
+    public void deletarId(@PathVariable Long id){
         repository.findById(id)
                 .map(cliente -> {
                     repository.delete(cliente);
@@ -40,7 +40,7 @@ public class ClienteService {
                         "Cliente não encontrado"));
     }
 
-    public void atualizarId(@PathVariable Integer id, @RequestBody @Valid Cliente atualizarCliente){
+    public void atualizarId(@PathVariable Long id, @RequestBody @Valid Cliente atualizarCliente){
         repository.findById(id)
                 .map(cliente -> {
                     atualizarCliente.setId(cliente.getId());

@@ -28,19 +28,19 @@ public class ClienteController {
     }
 
     @GetMapping("{id}")
-    public Cliente achar(@PathVariable Integer id){
+    public Cliente achar(@PathVariable Long id){
         return service.acharPorId(id);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletar(@PathVariable Integer id){
+    public void deletar(@PathVariable Long id){
         service.deletarId(id);
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar(@PathVariable Integer id, @RequestBody @Valid Cliente atualizarCliente){
+    public void atualizar(@PathVariable Long id, @RequestBody @Valid Cliente atualizarCliente){
         service.atualizarId(id, atualizarCliente);
     }
 }

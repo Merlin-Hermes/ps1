@@ -35,13 +35,13 @@ public class QuartoService {
         return quartoRepository.findAll();
     }
 
-    public Quarto achar(@PathVariable Integer id){
+    public Quarto achar(@PathVariable Long id){
         return quartoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Quarto não encontrado"));
     }
 
-    public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid QuartoDTO dto){
+    public Quarto checkin(@PathVariable Long id, @RequestBody @Valid QuartoDTO dto){
         Quarto quart = new Quarto();
-        Integer idCliente = dto.getIdCliente();
+        Long idCliente = dto.getIdCliente();
         Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
         Cliente cliente = clienteOptional.orElse(new Cliente());
 

@@ -2,7 +2,6 @@ package org.example.clientes.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.example.clientes.model.entity.Quarto;
-import org.example.clientes.model.repostory.QuartoRepository;
 import org.example.clientes.rest.dto.QuartoDTO;
 import org.example.clientes.service.QuartoService;
 import org.springframework.http.HttpStatus;
@@ -31,12 +30,12 @@ public class QuartoController {
     }
 
     @GetMapping("/{id}")
-    public Quarto acharQuartoPorId(@PathVariable Integer id){
+    public Quarto acharQuartoPorId(@PathVariable Long id){
         return quartoService.achar(id);
     }
 
     @PutMapping("/{id}")
-    public Quarto checkin(@PathVariable Integer id, @RequestBody @Valid QuartoDTO dto){
+    public Quarto checkin(@PathVariable Long id, @RequestBody @Valid QuartoDTO dto){
         return quartoService.checkin(id, dto);
     }
 }

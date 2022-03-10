@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 }

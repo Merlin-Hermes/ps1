@@ -11,10 +11,10 @@ public class QuartoDTO {
 
     @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;
-    private Integer id;
+    private Long id;
     private String data;
     private String valor;
-    private Integer idCliente;
+    private Long idCliente;
     @NotEmpty(message = "{campo.status.obrigatorio}")
     private String status;
 
