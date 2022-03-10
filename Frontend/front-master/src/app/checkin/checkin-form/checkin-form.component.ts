@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Cliente} from "../../clientes/cliente";
-import {ClientesService} from "../../clientes.service";
+import {ClientesService} from "../../services/clientes.service";
 import {Checkin} from "../checkin";
-import {CheckinService} from "../../checkin.service"
+import {CheckinService} from "../../services/checkin.service"
 import {Params, Router, ActivatedRoute} from '@angular/router'
 import {Observable} from "rxjs";
 import {checkThresholds} from "@angular-devkit/build-angular/src/angular-cli-files/utilities/bundle-calculator";

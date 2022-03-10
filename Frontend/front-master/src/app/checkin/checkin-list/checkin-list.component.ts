@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CheckinService} from '../../checkin.service'
+import {CheckinService} from '../../services/checkin.service'
 import { Router } from '@angular/router'
 import {Checkin} from "../checkin";
 import {Cliente} from "../../clientes/cliente";
